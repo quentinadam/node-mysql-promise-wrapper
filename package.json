@@ -1,0 +1,18 @@
+{
+    "name": "mysql-promise-wrapper",
+    "version": "1.0.0",
+    "description": "Wrapper for mysql with ES6 Promises",
+    "keywords": ["mysql", "promise"],
+    "author": "Quentin Adam <quentinadam@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/quentinadam/node-mysql-promise-wrapper.git"
+    },
+    "main": "Database.js",
+    "dependencies": {
+        "co": "^4.6.0",
+        "mysql": "^2.10.2"
+    },
+    "engines": {"node": ">=4.0"}
+}
