@@ -1,6 +1,6 @@
 {
     "name": "mysql-promise-wrapper",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Wrapper for mysql with ES6 Promises",
     "keywords": ["mysql", "promise"],
     "author": "Quentin Adam <quentinadam@gmail.com>",
