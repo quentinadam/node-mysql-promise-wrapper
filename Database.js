@@ -30,6 +30,20 @@ class Connection {
         });
     }
     
+    transaction(fn) {
+        return co(function*() {
+            try {
+                yield this.query("START TRANSACTION");
+                let result = yield fn(this);
+                yield this.query("COMMIT");
+                return result;
+            } catch (error) {
+                yield this.query("ROLLBACK");
+                throw error;
+            }
+        }.bind(this));
+    }
+    
     escape(value) {
         return mysql.escape(value);
     }
@@ -81,17 +95,7 @@ class Database {
     }
     
     transaction(fn) {
-        return this.connection(co.wrap(function*(connection) {
-            try {
-                yield connection.query("START TRANSACTION");
-                let result = yield fn(connection);
-                yield connection.query("COMMIT");
-                return result;
-            } catch (error) {
-                yield connection.query("ROLLBACK");
-                throw error;
-            }
-        }.bind(this)));
+        return this.connection((connection) => connection.transaction(fn));
     }
     
     escape(value) {
